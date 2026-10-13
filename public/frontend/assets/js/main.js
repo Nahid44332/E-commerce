@@ -1,234 +1,3 @@
-// fixed header
-$(window).scroll(function () {
-    var scrollTop = $(window).scrollTop();
-    if (scrollTop >= 100) {
-        $('body').addClass('fixed-header');
-    } else {
-        $('body').removeClass('fixed-header');
-    }
-});
-
-//Category Menu js
-$(document).ready(function (e) {
-    // Cetegory Show
-    $(".header__category-icon-outer").on("click", function (e) {
-        e.stopPropagation();
-        $(".header__category-items-outer").toggleClass("show");
-    });
-    $(".header__category-items-outer").on("click", function (e) {
-        e.stopPropagation();
-    });
-    $(document).on("click", function (e) {
-        $(".header__category-items-outer").removeClass("show");
-    });
-});
-
-// Navbar Toggle Button For Mini Device
-$('.nav-toggle-btn').click(function () {
-    $('.header__dynamic-page-wrapper').toggleClass('menu-visible');
-    $('body').toggleClass('body-overflow');
-});
-
-//Home Slider Js
-$('.slider-items-wrapper').slick({
-    dots: true,
-    arrows: false,
-    infinite: true,
-    speed: 500,
-    autoplay: true,
-    fade: true,
-    cssEase: 'linear'
-});
-
-//Categoris Slider
-$('.categoris-items-wrapper').owlCarousel({
-    loop: true,
-    margin: 10,
-    dots: false,
-    responsiveClass: true,
-    responsive: {
-        0: {
-            items: 2,
-            nav: true
-        },
-        600: {
-            items: 3,
-            nav: true
-        },
-        1000: {
-            items: 5,
-            nav: true,
-            loop: true
-        },
-        1200: {
-            items: 7,
-            nav: true,
-            loop: true
-        }
-    }
-});
-
-$('.product-items-wrapper').slick({
-    slidesToShow: 6,
-    slidesToScroll: 1,
-    arrows: true,
-    dots: false,
-    speed: 300,
-    infinite: true,
-    autoplaySpeed: 5000,
-    autoplay: true,
-    prevArrow:
-        '<button type="button" class="slick-prev"><i class="fas fa-chevron-right"></i></button>',
-    nextArrow:
-        '<button type="button" class="slick-next"><i class="fas fa-chevron-left"></i></button>',
-    responsive: [
-        {
-            breakpoint: 1200,
-            settings: {
-                slidesToShow: 4,
-            }
-        },
-        {
-            breakpoint: 1024,
-            settings: {
-                slidesToShow: 3,
-            }
-        },
-        {
-            breakpoint: 767,
-            settings: {
-                slidesToShow: 2,
-            }
-        }
-    ]
-});
-
-$('.related-product-items-wrap').slick({
-    slidesToShow: 6,
-    slidesToScroll: 1,
-    arrows: true,
-    dots: false,
-    speed: 300,
-    infinite: true,
-    autoplaySpeed: 5000,
-    autoplay: true,
-    prevArrow:
-        '<button type="button" class="slick-prev"><i class="fas fa-chevron-right"></i></button>',
-    nextArrow:
-        '<button type="button" class="slick-next"><i class="fas fa-chevron-left"></i></button>',
-    responsive: [
-        {
-            breakpoint: 1200,
-            settings: {
-                slidesToShow: 4,
-            }
-        },
-        {
-            breakpoint: 1024,
-            settings: {
-                slidesToShow: 3,
-            }
-        },
-        {
-            breakpoint: 767,
-            settings: {
-                slidesToShow: 2,
-            }
-        }
-    ]
-});
-
-$('.slider-content').slick({
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: true,
-    fade: false,
-    infinite: true,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    speed: 1000,
-    asNavFor: '.slider-thumb',
-    arrows: true,
-    prevArrow: '<i class="fas fa-chevron-left"></i>',
-    nextArrow: '<i class="fas fa-chevron-right"></i>',
-});
-$('.slider-thumb').slick({
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    asNavFor: '.slider-content',
-    dots: false,
-    centerMode: false,
-    focusOnSelect: true
-});
-
-//Address Show hide
-$('#differentaddress').click(function () {
-    $('#collapseAddress').toggle(500);
-});
-
-
-//Search Show hide
-$('.res-search').on('click', function () {
-    $('.search-form-outer').toggleClass('show');
-});
-
-//Filter Item Show
-$(document).on("click", ".filter-items-outer .label", function (e) {
-    $(this).closest('.filter-items-outer').find(".filter-items").slideToggle();
-});
-
-//Thanks Your Js
-const Confettiful = function (el) {
-    this.el = el;
-    this.containerEl = null;
-
-    this.confettiFrequency = 3;
-    this.confettiColors = ['#EF2964', '#00C09D', '#2D87B0', '#48485E', '#EFFF1D'];
-    this.confettiAnimations = ['slow', 'medium', 'fast'];
-
-    this._setupElements();
-    this._renderConfetti();
-};
-
-Confettiful.prototype._setupElements = function () {
-    const containerEl = document.createElement('div');
-    const elPosition = this.el.style.position;
-
-    if (elPosition !== 'relative' || elPosition !== 'absolute') {
-        this.el.style.position = 'relative';
-    }
-
-    containerEl.classList.add('confetti-container');
-
-    this.el.appendChild(containerEl);
-
-    this.containerEl = containerEl;
-};
-
-Confettiful.prototype._renderConfetti = function () {
-    this.confettiInterval = setInterval(() => {
-        const confettiEl = document.createElement('div');
-        const confettiSize = (Math.floor(Math.random() * 3) + 7) + 'px';
-        const confettiBackground = this.confettiColors[Math.floor(Math.random() * this.confettiColors.length)];
-        const confettiLeft = (Math.floor(Math.random() * this.el.offsetWidth)) + 'px';
-        const confettiAnimation = this.confettiAnimations[Math.floor(Math.random() * this.confettiAnimations.length)];
-
-        confettiEl.classList.add('confetti', 'confetti--animation-' + confettiAnimation);
-        confettiEl.style.left = confettiLeft;
-        confettiEl.style.width = confettiSize;
-        confettiEl.style.height = confettiSize;
-        confettiEl.style.backgroundColor = confettiBackground;
-
-        confettiEl.removeTimeout = setTimeout(function () {
-            confettiEl.parentNode.removeChild(confettiEl);
-        }, 3000);
-
-        this.containerEl.appendChild(confettiEl);
-    }, 25);
-};
-
-window.confettiful = new Confettiful(document.querySelector('.js-container'));
-
 /* features.js – index.html এর একদম শেষে লিংক করুন */
 (function () {
     var bn = function (n) { return String(n).replace(/\d/g, function (d) { return '০১২৩৪৫৬৭৮৯'[d]; }); };
@@ -302,10 +71,7 @@ window.confettiful = new Confettiful(document.querySelector('.js-container'));
         rt.innerHTML = stars + '<span>(' + bn(10 + idx * 3) + ')</span>';
         card.querySelector('.product__item-name').after(rt);
 
-        act.querySelector('.wish').onclick = function () {
-            this.classList.toggle('active');
-            this.firstChild.className = this.classList.contains('active') ? 'fas fa-heart' : 'far fa-heart';
-        };
+        act.querySelector('.wish').onclick = function () { toggleWish(card); };
         act.querySelector('.qv').onclick = function () { openQV(card, stars, oldP, newP); };
     });
 
@@ -362,4 +128,111 @@ window.confettiful = new Confettiful(document.querySelector('.js-container'));
         applyTheme(d);
         safe(function () { localStorage.setItem('theme', d ? 'dark' : 'light'); });
     };
+
+    /* --- Stock progress bar --- */
+    var left = [5, 12, 8, 3, 20, 7, 15, 4, 9, 25], TOTAL = 50;
+    [].forEach.call(document.querySelectorAll('.product__item-outer'), function (card, idx) {
+        var l = left[idx % left.length], pct = Math.round((TOTAL - l) / TOTAL * 100);
+        var el = document.createElement('div');
+        el.className = 'stock-info';
+        el.innerHTML = '<div class="stock-text' + (l <= 10 ? ' low' : '') + '"><span>আর মাত্র <b>' + bn(l) + '</b>টি বাকি</span><span>' + bn(pct) + '% বিক্রি</span></div>' +
+            '<div class="stock-bar"><span class="stock-fill" data-w="' + pct + '"></span></div>';
+        card.querySelector('.product__item-info-outer').appendChild(el);
+    });
+    var fills = document.querySelectorAll('.stock-fill');
+    var showFill = function (f) { f.style.width = f.getAttribute('data-w') + '%'; };
+    if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (es) {
+            es.forEach(function (e) { if (e.isIntersecting) { showFill(e.target); io.unobserve(e.target); } });
+        }, { threshold: 0.3 });
+        [].forEach.call(fills, function (f) { io.observe(f); });
+    } else { [].forEach.call(fills, showFill); }
+
+    /* --- Offer popup (প্রতি সেশনে একবার) --- */
+    var op = document.getElementById('offerPopup');
+    if (op) {
+        var closeOffer = function () { op.classList.remove('open'); safe(function () { sessionStorage.setItem('offerSeen', '1'); }); };
+        if (!safe(function () { return sessionStorage.getItem('offerSeen'); })) setTimeout(function () { op.classList.add('open'); }, 3000);
+        document.getElementById('offerClose').onclick = closeOffer;
+        op.onclick = function (e) { if (e.target === op) closeOffer(); };
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeOffer(); });
+        document.getElementById('offerCopy').onclick = function () {
+            var btn = this, code = document.getElementById('offerCode').textContent;
+            var done = function () { btn.textContent = 'কপি হয়েছে ✓'; setTimeout(function () { btn.textContent = 'কপি'; }, 1800); };
+            if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(code).then(done, done);
+            else { var t = document.createElement('textarea'); t.value = code; document.body.appendChild(t); t.select(); safe(function () { document.execCommand('copy'); }); t.remove(); done(); }
+        };
+    }
+
+    /* --- Wishlist + toast + cart count --- */
+    var WK = 'nm_wishlist', CK = 'nm_cartcount';
+    var load = function (k, def) { var v = safe(function () { return JSON.parse(localStorage.getItem(k)); }); return v === null || v === undefined ? def : v; };
+    var save = function (k, v) { safe(function () { localStorage.setItem(k, JSON.stringify(v)); }); };
+    var esc = function (t) { return String(t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+    var wish = load(WK, []), cartCount = load(CK, 1);
+    var cardsAll = document.querySelectorAll('.product__item-outer');
+
+    function toast(msg, icon) {
+        var w = document.getElementById('toastWrap'); if (!w) return;
+        var t = document.createElement('div');
+        t.className = 'toast';
+        t.innerHTML = '<i class="fas ' + (icon || 'fa-check-circle') + '"></i> ' + msg;
+        w.appendChild(t);
+        setTimeout(function () { t.classList.add('hide'); }, 2200);
+        setTimeout(function () { t.remove(); }, 2700);
+    }
+    function cardData(card) {
+        return {
+            name: card.querySelector('.product__item-name').textContent.trim(),
+            price: card.querySelector('.product__item-regular-price span').textContent.trim(),
+            img: card.querySelector('img').getAttribute('src')
+        };
+    }
+    function wishIndex(name) { for (var i = 0; i < wish.length; i++) if (wish[i].name === name) return i; return -1; }
+    function toggleWish(card) {
+        var d = cardData(card), i = wishIndex(d.name);
+        if (i >= 0) { wish.splice(i, 1); toast('পছন্দের তালিকা থেকে সরানো হয়েছে', 'fa-heart-broken'); }
+        else { wish.push(d); toast('পছন্দের তালিকায় যোগ হয়েছে', 'fa-heart'); }
+        save(WK, wish); renderWish();
+    }
+    function renderCartCount() {
+        [].forEach.call(document.querySelectorAll('.cart-count'), function (e) { e.textContent = bn(cartCount); });
+    }
+    function renderWish() {
+        [].forEach.call(cardsAll, function (card) {
+            var on = wishIndex(card.querySelector('.product__item-name').textContent.trim()) >= 0;
+            var b = card.querySelector('.wish'); if (!b) return;
+            b.classList.toggle('active', on);
+            b.firstChild.className = on ? 'fas fa-heart' : 'far fa-heart';
+        });
+        [].forEach.call(document.querySelectorAll('.wish-count'), function (e) {
+            e.textContent = bn(wish.length); e.style.display = wish.length ? '' : 'none';
+        });
+        var tc = document.getElementById('wishTitleCount'); if (tc) tc.textContent = wish.length ? '(' + bn(wish.length) + ')' : '';
+        var list = document.getElementById('wishList'); if (!list) return;
+        list.innerHTML = wish.length ? wish.map(function (w, i) {
+            return '<div class="wish-item"><img src="' + esc(w.img) + '" alt="' + esc(w.name) + '"><div><b>' + esc(w.name) + '</b><span class="wish-price">' + esc(w.price) + '</span>' +
+                '<div class="wish-actions"><button type="button" class="w-cart" data-i="' + i + '"><i class="fas fa-cart-plus"></i> কার্টে নিন</button>' +
+                '<button type="button" class="w-del" data-i="' + i + '"><i class="fas fa-trash-alt"></i> সরান</button></div></div></div>';
+        }).join('') : '<div class="wish-empty"><i class="far fa-heart"></i><p>আপনার পছন্দের তালিকা এখন খালি।<br>পণ্যের হার্টে চাপ দিয়ে যোগ করুন।</p></div>';
+    }
+    var wd = document.getElementById('wishDrawer'), wo = document.getElementById('wishOverlay');
+    function openWish() { wd.classList.add('open'); wo.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeWish() { wd.classList.remove('open'); wo.classList.remove('open'); document.body.style.overflow = ''; }
+    if (wd) {
+        ['wishOpen', 'wishOpenM'].forEach(function (id) {
+            var b = document.getElementById(id); if (b) b.onclick = function (e) { e.preventDefault(); openWish(); };
+        });
+        document.getElementById('wishClose').onclick = closeWish;
+        wo.onclick = closeWish;
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeWish(); });
+        document.getElementById('wishClear').onclick = function () { if (wish.length) { wish = []; save(WK, wish); renderWish(); toast('তালিকা খালি করা হয়েছে', 'fa-trash-alt'); } };
+        document.getElementById('wishList').onclick = function (e) {
+            var b = e.target.closest('button[data-i]'); if (!b) return;
+            var i = +b.getAttribute('data-i');
+            if (b.classList.contains('w-del')) { wish.splice(i, 1); save(WK, wish); renderWish(); toast('তালিকা থেকে সরানো হয়েছে', 'fa-heart-broken'); }
+            else { cartCount++; save(CK, cartCount); renderCartCount(); toast('কার্টে যোগ হয়েছে', 'fa-check-circle'); }
+        };
+    }
+    renderWish(); renderCartCount();
 })();

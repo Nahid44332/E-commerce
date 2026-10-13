@@ -1679,3 +1679,519 @@ body.is-loading .categoris-item::after {
         animation-duration: 32s
     }
 }
+
+
+/* ---------- Stock progress bar ---------- */
+.stock-info {
+    margin-top: 10px
+}
+
+.stock-text {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 5px
+}
+
+.stock-text b {
+    color: var(--brand)
+}
+
+.stock-text.low b {
+    color: var(--danger)
+}
+
+.stock-bar {
+    height: 7px;
+    border-radius: 7px;
+    background: var(--line);
+    overflow: hidden
+}
+
+.stock-fill {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: 7px;
+    background: linear-gradient(90deg, var(--brand), #34c38f);
+    transition: width 1.2s ease
+}
+
+.stock-text.low+.stock-bar .stock-fill {
+    background: linear-gradient(90deg, var(--accent), var(--danger))
+}
+
+/* ---------- Offer popup ---------- */
+.offer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 20, 15, .65);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 3000
+}
+
+.offer-overlay.open {
+    display: flex;
+    animation: fadeIn .3s
+}
+
+.offer-box {
+    position: relative;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    background: var(--card);
+    color: var(--ink);
+    border-radius: var(--r-lg);
+    padding: 34px 28px 26px;
+    box-shadow: var(--shadow-hover);
+    animation: popIn .4s
+}
+
+.offer-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--bg);
+    color: var(--ink);
+    cursor: pointer
+}
+
+.offer-icon {
+    width: 70px;
+    height: 70px;
+    margin: -68px auto 14px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--danger));
+    color: #fff;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(224, 49, 49, .35)
+}
+
+.offer-box h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 6px
+}
+
+.offer-box p {
+    color: var(--muted);
+    margin: 0 0 16px
+}
+
+.offer-code {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px dashed var(--brand);
+    background: var(--brand-soft);
+    border-radius: var(--r-md);
+    padding: 8px 8px 8px 20px;
+    margin-bottom: 16px
+}
+
+.offer-code b {
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--brand-dark)
+}
+
+.offer-code button {
+    border: 0;
+    border-radius: 50px;
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    padding: 8px 20px;
+    cursor: pointer
+}
+
+.offer-btn {
+    display: block;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    padding: 12px;
+    border-radius: 50px
+}
+
+.offer-btn:hover {
+    color: #fff;
+    filter: brightness(.92)
+}
+
+.offer-box small {
+    display: block;
+    margin-top: 12px;
+    color: var(--muted)
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(.85);
+        opacity: 0
+    }
+
+    to {
+        transform: none;
+        opacity: 1
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+body.dark .offer-code b {
+    color: #fff
+}
+
+/* ---------- Payment strip (footer) ---------- */
+.payment-wrapper {
+    padding: 22px 0;
+    border-top: 1px solid rgba(255, 255, 255, .1)
+}
+
+.payment-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap
+}
+
+.payment-title {
+    color: #fff;
+    font-weight: 700
+}
+
+.payment-title i {
+    color: var(--accent);
+    margin-right: 6px
+}
+
+.payment-list {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap
+}
+
+.pay-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff
+}
+
+.pay-badge.bkash {
+    background: #e2136e
+}
+
+.pay-badge.nagad {
+    background: #f6921e
+}
+
+.pay-badge.rocket {
+    background: #8c3494
+}
+
+.pay-badge.cod {
+    background: #fff;
+    color: var(--brand-dark)
+}
+
+.pay-icon {
+    font-size: 38px;
+    line-height: 1;
+    color: #fff;
+    opacity: .9
+}
+
+@media (max-width:767px) {
+    .payment-strip {
+        justify-content: center;
+        text-align: center
+    }
+
+    .payment-list {
+        justify-content: center
+    }
+
+    .offer-box h3 {
+        font-size: 19px
+    }
+}
+
+
+/* ---------- Wishlist (header counter + drawer + toast) ---------- */
+.header-wish {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--bg);
+    color: var(--danger);
+    font-size: 17px;
+    cursor: pointer;
+    transition: .2s
+}
+
+.header-wish:hover {
+    background: #fdecec
+}
+
+.header-wish .count-number {
+    top: -4px;
+    right: -4px;
+    background: var(--danger)
+}
+
+.mobile-nav .wish-count {
+    background: var(--danger)
+}
+
+.wish-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 20, 15, .55);
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+    z-index: 2500
+}
+
+.wish-overlay.open {
+    opacity: 1;
+    visibility: visible
+}
+
+.wish-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 390px;
+    max-width: 92vw;
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
+    color: var(--ink);
+    box-shadow: var(--shadow-hover);
+    transform: translateX(105%);
+    transition: transform .35s ease;
+    z-index: 2600
+}
+
+.wish-drawer.open {
+    transform: none
+}
+
+.wish-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--line)
+}
+
+.wish-head h3 {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 700
+}
+
+.wish-head h3 i {
+    color: var(--danger);
+    margin-right: 6px
+}
+
+.wish-head button {
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--bg);
+    color: var(--ink);
+    cursor: pointer
+}
+
+.wish-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 20px
+}
+
+.wish-item {
+    display: grid;
+    grid-template-columns: 68px 1fr;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line)
+}
+
+.wish-item img {
+    width: 68px;
+    height: 68px;
+    object-fit: cover;
+    border-radius: var(--r-sm);
+    border: 1px solid var(--line)
+}
+
+.wish-item b {
+    display: block;
+    font-weight: 600;
+    line-height: 1.3
+}
+
+.wish-price {
+    color: var(--brand);
+    font-weight: 700
+}
+
+.wish-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px
+}
+
+.wish-actions button {
+    border: 0;
+    border-radius: 50px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer
+}
+
+.wish-actions .w-cart {
+    background: var(--brand);
+    color: #fff
+}
+
+.wish-actions .w-cart:hover {
+    background: var(--brand-dark)
+}
+
+.wish-actions .w-del {
+    background: #fdecec;
+    color: var(--danger)
+}
+
+.wish-empty {
+    text-align: center;
+    padding: 60px 10px;
+    color: var(--muted)
+}
+
+.wish-empty i {
+    font-size: 46px;
+    color: var(--line);
+    margin-bottom: 12px
+}
+
+.wish-foot {
+    padding: 14px 20px;
+    border-top: 1px solid var(--line);
+    text-align: center
+}
+
+.wish-foot button {
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font-weight: 600;
+    cursor: pointer
+}
+
+.wish-foot button:hover {
+    color: var(--danger)
+}
+
+.toast-wrap {
+    position: fixed;
+    top: 84px;
+    right: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 4000;
+    pointer-events: none
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--ink);
+    color: #fff;
+    padding: 11px 18px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: var(--shadow-hover);
+    animation: toastIn .35s
+}
+
+.toast i {
+    color: var(--accent)
+}
+
+.toast.hide {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: .35s
+}
+
+body.dark .toast {
+    background: #e8eeea;
+    color: #10261c
+}
+
+@keyframes toastIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px)
+    }
+
+    to {
+        opacity: 1;
+        transform: none
+    }
+}
+
+@media (max-width:767px) {
+    .mobile-nav {
+        grid-template-columns: repeat(5, 1fr)
+    }
+
+    .toast-wrap {
+        top: 70px;
+        left: 12px;
+        right: 12px;
+        align-items: center
+    }
+}
