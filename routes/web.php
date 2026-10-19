@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\Backend\AuthController;
+use App\Http\Controllers\Backend\BackendController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', [FrontendController::class, 'index']);
@@ -16,6 +19,15 @@ Route::get('/checkout', [FrontendController::class, 'checkout']);
 
 //Admin Login Route.....//
 Route::get('/admin/login', [AuthController::class, 'adminLogin']);
+Route::get('/admin/logout', [AuthController::class, 'adminLogout']);
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admin/dashboard', [BackendController::class, 'adminDashboard']);
+
+// ================= Category Routes =================
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/category', [CategoryController::class, 'index'])->name('categories.index');
+    Route::post('/category/store', [CategoryController::class, 'store'])->name('categories.store');
+    Route::put('/category/{id}', [CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+});
