@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');                      // ক্যাটাগরির নাম (যেমন: ইলেকট্রনিক্স)
             $table->string('slug')->unique();            // ইউনিক স্লাগ (যেমন: electronics)
-            $table->string('icon')->nullable();          // ফন্টঅসম আইকন ক্লাস (যেমন: fa-solid fa-plug)
+            $table->string('image');
             $table->enum('status', ['active', 'inactive'])->default('active'); // স্ট্যাটাস
             $table->timestamps();
         });

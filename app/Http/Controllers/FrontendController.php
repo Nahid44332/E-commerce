@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
     public function index()
     {
-        return view('Frontend.index');
+        $categoris = Category::get();
+        return view('Frontend.index', compact('categoris'));
     }
 
     public function shop()

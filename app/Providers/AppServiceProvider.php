@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Support\Facades\View;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -19,6 +20,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+         View::composer('*', function($view){
+            // $view->with('cartProduct', Cart::where('ip_address', request()->ip())->with('product')->get());
+            // $view->with('cartProductCount', Cart::where('ip_address', request()->ip())->count());
+            $view->with('unicCategory', Category::orderBy('name', 'asc')->get());
+            // $view->with('unicSubCategory', SubCategory::orderBy('name', 'asc')->get());
+            // $view->with('sitesetting', Setting::first());
+        });
     }
 }

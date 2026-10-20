@@ -5,11 +5,12 @@
             <div class="container">
                 <div class="home__slider-sec-wrap">
                     <div class="home__category-outer">
-                        <ul class="header__category-list">
+                        @foreach ($categoris as $category)
+                            <ul class="header__category-list">
                             <li class="header__category-list-item item-has-submenu">
                                 <a href="{{url('/category-product')}}" class="header__category-list-item-link">
-                                    <img src="{{ asset('frontend/assets/images/product.png') }}" alt="category">
-                                    Test Category
+                                    <img src="{{ asset($category->image) }}" alt="category">
+                                    {{$category->name}}
                                 </a>
                                 <ul class="header__nav-item-category-submenu">
                                     <li class="header__category-submenu-item">
@@ -19,6 +20,7 @@
                                 </ul>
                             </li>
                         </ul>
+                        @endforeach
                     </div>
                     <div class="home__slider-items-wrapper hero">
                         <div class="hero-track">
