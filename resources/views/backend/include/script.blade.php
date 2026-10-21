@@ -180,106 +180,36 @@
         });
     </script>
 
- <script>
+<script>
 (function() {
     const dot = document.getElementById('cursorDot');
     const ring = document.getElementById('cursorRing');
-    const canvas = document.getElementById('magic-canvas');
-    const ctx = canvas.getContext('2d');
 
     let mouse = { x: -100, y: -100 };
     let ringPos = { x: -100, y: -100 };
-    let particles = [];
 
-    // থিম ম্যাচিং কালার প্যালেট
-    const colors = ['#0f7a4f', '#f59f1b', '#2ecc71', '#ffc107', '#ffffff'];
-
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    // মাউস পজিশন ট্র্যাকিং
     window.addEventListener('mousemove', (e) => {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
 
-        // দ্রুত পয়েন্টার ডট
+        // ডট সঙ্গে সঙ্গে ফলো করবে
         dot.style.left = `${mouse.x}px`;
         dot.style.top = `${mouse.y}px`;
-
-        // মাউস নাড়ালে পেছনের স্পার্কল তৈরি
-        if (Math.random() < 0.6) {
-            createParticle(mouse.x, mouse.y, false);
-        }
     });
 
-    // ক্লিকে ম্যাজিক বাস্ট/আতশবাজি ইফেক্ট
-    window.addEventListener('click', (e) => {
-        for (let i = 0; i < 20; i++) {
-            createParticle(e.clientX, e.clientY, true);
-        }
-    });
-
-    // স্পার্কল কণা তৈরির ফাংশন
-    function createParticle(x, y, isBurst) {
-        const size = isBurst ? Math.random() * 6 + 3 : Math.random() * 4 + 1.5;
-        const speed = isBurst ? Math.random() * 5 + 2 : Math.random() * 1.5 + 0.2;
-        const angle = Math.random() * Math.PI * 2;
-
-        particles.push({
-            x: x,
-            y: y,
-            size: size,
-            vx: Math.cos(angle) * speed,
-            vy: Math.sin(angle) * speed + (isBurst ? 0 : -0.5),
-            color: colors[Math.floor(Math.random() * colors.length)],
-            alpha: 1,
-            decay: isBurst ? Math.random() * 0.03 + 0.015 : Math.random() * 0.02 + 0.01
-        });
-    }
-
-    // প্রধান অ্যানিমেশন লুপ
+    // স্মুথ রিং অ্যানিমেশন লুপ
     function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // স্মুথ লার্পিং (Smooth Lagging Effect for Ring)
-        ringPos.x += (mouse.x - ringPos.x) * 0.18;
-        ringPos.y += (mouse.y - ringPos.y) * 0.18;
+        ringPos.x += (mouse.x - ringPos.x) * 0.2;
+        ringPos.y += (mouse.y - ringPos.y) * 0.2;
+        
         ring.style.left = `${ringPos.x}px`;
         ring.style.top = `${ringPos.y}px`;
-
-        // কণা ড্র ও আপডেট করা
-        for (let i = particles.length - 1; i >= 0; i--) {
-            let p = particles[i];
-            p.x += p.vx;
-            p.y += p.vy;
-            p.alpha -= p.decay;
-
-            if (p.alpha <= 0) {
-                particles.splice(i, 1);
-                continue;
-            }
-
-            ctx.save();
-            ctx.globalAlpha = p.alpha;
-            ctx.fillStyle = p.color;
-            ctx.shadowBlur = 8;
-            ctx.shadowColor = p.color;
-
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.restore();
-        }
 
         requestAnimationFrame(animate);
     }
     animate();
 
-    // বাটন/লিঙ্ক হোভার ইফেক্ট
+    // ইন্টারঅ্যাক্টিভ এলিমেন্ট হোভার হ্যান্ডলিং
     const interactiveElements = 'a, button, input, select, textarea, [role="button"]';
     document.addEventListener('mouseover', (e) => {
         if (e.target.closest(interactiveElements)) {

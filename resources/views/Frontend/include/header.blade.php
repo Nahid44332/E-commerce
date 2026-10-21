@@ -89,9 +89,9 @@
                               @foreach ($unicCategory as $category)
                                   <ul class="header__category-list">
                                       <li class="header__category-list-item item-has-submenu">
-                                          <a href="{{ url('/category-product') }}"
+                                          <a href="{{ url('/category-product/' . $category->slug) }}"
                                               class="header__category-list-item-link">
-                                              <img src="{{ $category->image }}" alt="category">
+                                              <img src="{{ asset($category->image) }}" alt="category">
                                               {{ $category->name }}
                                           </a>
                                           <ul class="header__nav-item-category-submenu">

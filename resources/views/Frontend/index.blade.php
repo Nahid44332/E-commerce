@@ -8,7 +8,7 @@
                         @foreach ($categoris as $category)
                             <ul class="header__category-list">
                             <li class="header__category-list-item item-has-submenu">
-                                <a href="{{url('/category-product')}}" class="header__category-list-item-link">
+                                <a href="{{ url('/category-product/' . $category->slug) }}" class="header__category-list-item-link">
                                     <img src="{{ asset($category->image) }}" alt="category">
                                     {{$category->name}}
                                 </a>
@@ -83,54 +83,14 @@
                     <h2 class="title">Categories</h2>
                 </div>
                 <div class="categoris-items-wrapper owl-carousel">
-                    <a href="#" class="categoris-item">
-                        <img src="{{ asset('frontend/assets/images/product.png') }}" alt="category"
+                    @foreach ($categoris as $category)
+                        <a href="{{ url('/category-product/' . $category->slug) }}" class="categoris-item">
+                        <img src="{{ asset($category->image) }}" alt="category"
                             loading="lazy" />
-                        <h6 class="categoris-name">Test Category</h6>
+                        <h6 class="categoris-name">{{$category->name}}</h6>
                         <span class="items-number">1 items</span>
                     </a>
-                    <a href="#" class="categoris-item">
-                        <img src="{{ asset('frontend/assets/images/product.png') }}" alt="category"
-                            loading="lazy" />
-                        <h6 class="categoris-name">Test Category</h6>
-                        <span class="items-number">1 items</span>
-                    </a>
-                    <a href="#" class="categoris-item">
-                        <img src="{{ asset('frontend/assets/images/product.png') }}" alt="category"
-                            loading="lazy" />
-                        <h6 class="categoris-name">Test Category</h6>
-                        <span class="items-number">1 items</span>
-                    </a>
-                    <a href="#" class="categoris-item">
-                        <img src="{{ asset('frontend/assets/images/product.png') }}" alt="category"
-                            loading="lazy" />
-                        <h6 class="categoris-name">Test Category</h6>
-                        <span class="items-number">1 items</span>
-                    </a>
-                    <a href="#" class="categoris-item">
-                        <img src="{{ asset('frontend/assets/images/product.png') }}" alt="category"
-                            loading="lazy" />
-                        <h6 class="categoris-name">Test Category</h6>
-                        <span class="items-number">1 items</span>
-                    </a>
-                    <a href="#" class="categoris-item">
-                        <img src="{{ asset('frontend/assets/images/product.png') }}" alt="category"
-                            loading="lazy" />
-                        <h6 class="categoris-name">Test Category</h6>
-                        <span class="items-number">1 items</span>
-                    </a>
-                    <a href="#" class="categoris-item">
-                        <img src="{{ asset('frontend/assets/images/product.png') }}" alt="category"
-                            loading="lazy" />
-                        <h6 class="categoris-name">Test Category</h6>
-                        <span class="items-number">1 items</span>
-                    </a>
-                    <a href="#" class="categoris-item">
-                        <img src="{{ asset('frontend/assets/images/product.png') }}" alt="category"
-                            loading="lazy" />
-                        <h6 class="categoris-name">Test Category</h6>
-                        <span class="items-number">1 items</span>
-                    </a>
+                    @endforeach
                 </div>
             </div>
         </section>

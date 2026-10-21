@@ -15,52 +15,40 @@
     <!-- features.css এখন style.css এর ভেতরেই আছে -->
 
     <style>
-      /* Eye-Catching Interactive Magic Cursor */
-      .magic-cursor-dot,
-      .magic-cursor-ring {
-          pointer-events: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          transform: translate(-50%, -50%);
-          border-radius: 50%;
-          z-index: 999999;
-      }
+      /* Minimalist & Professional Glass Cursor */
+.magic-cursor-dot,
+.magic-cursor-ring {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 999999;
+    transition: transform 0.1s ease-out, background-color 0.2s, border-color 0.2s;
+}
 
-      .magic-cursor-dot {
-          width: 10px;
-          height: 10px;
-          background: #f59f1b;
-          /* অ্যাম্বার অ্যাকসেন্ট */
-          box-shadow: 0 0 10px #f59f1b, 0 0 20px #f59f1b;
-      }
+.magic-cursor-dot {
+    width: 6px;
+    height: 6px;
+    background: #0f7a4f; /* ব্র্যান্ড গ্রিন */
+}
 
-      .magic-cursor-ring {
-          width: 38px;
-          height: 38px;
-          border: 2px solid #0f7a4f;
-          /* ব্র্যান্ড গ্রিন */
-          box-shadow: 0 0 12px rgba(15, 122, 79, 0.4);
-          transition: width 0.25s ease-out, height 0.25s ease-out, background-color 0.25s, border-color 0.25s;
-      }
+.magic-cursor-ring {
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid rgba(15, 122, 79, 0.4);
+    background-color: rgba(15, 122, 79, 0.03);
+    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s, border-color 0.2s;
+}
 
-      /* বাটন/লিঙ্কে হোভার করলে রিং বড় ও গ্লো করবে */
-      body.cursor-hover .magic-cursor-ring {
-          width: 55px;
-          height: 55px;
-          border-color: #f59f1b;
-          background-color: rgba(245, 159, 27, 0.15);
-          box-shadow: 0 0 20px rgba(245, 159, 27, 0.6);
-      }
+/* বাটন বা লিঙ্কে গেলে জাস্ট হালকা একটু শিং বা বড় হবে, কোনো বিচ্ছিরি গ্লো করবে না */
+body.cursor-hover .magic-cursor-ring {
+    width: 44px;
+    height: 44px;
+    border-color: #f59f1b; /* অ্যাম্বার অ্যাকসেন্ট */
+    background-color: rgba(245, 159, 27, 0.08);
+}
 
-      /* ক্যানভাস ফর পার্টিকল ও স্পার্কল */
-      #magic-canvas {
-          pointer-events: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100vw;
-          height: 100vh;
-          z-index: 999998;
-      }
+/* ক্যানভাস বা স্পার্কল ঝামেলা চিরতরে বাদ! তাই ক্যানভাস ট্যাগ রিমুভ করে দেওয়া হয়েছে। */
   </style>

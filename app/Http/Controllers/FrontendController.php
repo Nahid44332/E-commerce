@@ -23,9 +23,10 @@ class FrontendController extends Controller
         return view('Frontend.returnProcess');
     }
 
-    public function categoryProduct()
+    public function categoryProduct($slug)
     {
-        return view('Frontend.categoryProduct');
+        $category = Category::with('subCategories')->where('slug', $slug)->firstOrFail();
+        return view('Frontend.categoryProduct', compact('category'));
     }
 
     public function subCategoryProduct()
@@ -47,5 +48,4 @@ class FrontendController extends Controller
     {
         return view('Frontend.checkout');
     }
-
 }

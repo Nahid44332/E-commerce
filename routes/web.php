@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/shop', [FrontendController::class, 'shop']);
 Route::get('/return-process', [FrontendController::class, 'returnProcess']);
-Route::get('/category-product', [FrontendController::class, 'categoryProduct']);
+Route::get('/category-product/{slug}', [FrontendController::class, 'categoryProduct']);
 Route::get('/sub-category-product', [FrontendController::class, 'subCategoryProduct']);
 Route::get('/product-details', [FrontendController::class, 'productDetails']);
 Route::get('/view-cart', [FrontendController::class, 'viewCart']);

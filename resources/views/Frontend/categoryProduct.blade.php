@@ -585,12 +585,12 @@
     <section class="page-banner cat-banner">
         <div class="container">
             <div class="cat-banner-inner">
-                <img src="{{ asset('frontend/assets/images/product.png') }}" alt="Test Category" class="cat-banner-img">
+                <img src="{{ asset($category->image) }}" alt="Test Category" class="cat-banner-img">
                 <div class="cat-banner-text">
-                    <h1>Test Category</h1>
+                    <h1>{{$category->name}}</h1>
                     <nav class="breadcrumb-nav" aria-label="breadcrumb"><a href="index.html">Home</a><i
                             class="fas fa-chevron-right"></i><a href="shop.html">Categories</a><i
-                            class="fas fa-chevron-right"></i><span>Test Category</span></nav>
+                            class="fas fa-chevron-right"></i><span>{{$category->name}}</span></nav>
                 </div>
                 <div class="cat-total"><small>মোট পণ্য</small><b id="catTotal">২৪</b></div>
             </div>
@@ -601,16 +601,14 @@
         <div class="container">
             <div class="subcat-strip">
                 <a href="category-product.html" class="subcat-chip active"><i class="fas fa-th-large"></i> সব পণ্য</a>
-                <a href="sub-category-product.html" class="subcat-chip"><img
-                        src="{{ asset('frontend/assets/images/product.png') }}" alt="">Test Subcategory 1</a>
-                <a href="sub-category-product.html" class="subcat-chip"><img
-                        src="{{ asset('frontend/assets/images/product.png') }}" alt="">Test Subcategory 2</a>
-                <a href="sub-category-product.html" class="subcat-chip"><img
-                        src="{{ asset('frontend/assets/images/product.png') }}" alt="">Test Subcategory 3</a>
-                <a href="sub-category-product.html" class="subcat-chip"><img
-                        src="{{ asset('frontend/assets/images/product.png') }}" alt="">Test Subcategory 4</a>
-                <a href="sub-category-product.html" class="subcat-chip"><img
-                        src="{{ asset('frontend/assets/images/product.png') }}" alt="">Test Subcategory 5</a>
+                @foreach ($category->subCategories as $subcat)
+                <a href="{{ url('/sub-category-product/' . $subcat->slug) }}" class="subcat-chip">
+                    <!-- যদি সাব-ক্যাটাগরির ইমেজ না থাকে, তবে ডিফল্ট ইমেজ দেখাবে -->
+                    {{-- <img src="{{ $subcat->image ? asset($subcat->image) : asset('frontend/assets/images/product.png') }}" 
+                         alt="{{ $subcat->name }}"> --}}
+                    {{ $subcat->name }}
+                </a>
+            @endforeach
             </div>
         </div>
     </section>
