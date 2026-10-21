@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
          View::composer('*', function($view){
             // $view->with('cartProduct', Cart::where('ip_address', request()->ip())->with('product')->get());
             // $view->with('cartProductCount', Cart::where('ip_address', request()->ip())->count());
-            $view->with('unicCategory', Category::orderBy('name', 'asc')->get());
+            $view->with('unicCategory', Category::orderBy('name', 'asc')->with('subCategories')->get());
             // $view->with('unicSubCategory', SubCategory::orderBy('name', 'asc')->get());
             // $view->with('sitesetting', Setting::first());
         });

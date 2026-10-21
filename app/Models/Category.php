@@ -15,4 +15,9 @@ class Category extends Model
         'image',
         'status'
     ];
+
+    public function subCategories()
+{
+    return $this->hasMany(SubCategory::class, 'category_id');
+}
 }

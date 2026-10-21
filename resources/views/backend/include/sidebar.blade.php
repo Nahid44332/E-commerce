@@ -38,7 +38,7 @@
                             <a href="{{url('/admin/category')}}"
                                 class="flex items-center gap-2 rounded-lg py-2 pl-11 pr-3 text-sm text-brand-200 hover:bg-white/5 hover:text-white"><span
                                     class="h-1.5 w-1.5 rounded-full bg-brand-400"></span>Categories</a>
-                            <a href="subcategories.html"
+                            <a href="{{url('/admin/sub-category')}}"
                                 class="flex items-center gap-2 rounded-lg py-2 pl-11 pr-3 text-sm text-brand-200 hover:bg-white/5 hover:text-white"><span
                                     class="h-1.5 w-1.5 rounded-full bg-brand-400"></span>Sub Categories</a>
                         </div>

@@ -3,7 +3,9 @@
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\BackendController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\FrontendController;
+use App\Models\SubCategory;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,4 +32,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/category/store', [CategoryController::class, 'store'])->name('categories.store');
     Route::put('/category/{id}', [CategoryController::class, 'update'])->name('categories.update');
     Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+});
+
+// ================= Sub-Category Routes =================
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/sub-category', [SubCategoryController::class, 'index'])->name('subcategories.index');
+    Route::post('/sub-category/store', [SubCategoryController::class, 'store'])->name('subcategories.store');
+    Route::put('/sub-category/update/{id}', [SubCategoryController::class, 'update'])->name('subcategories.update');
+    Route::delete('/sub-category/{id}', [SubCategoryController::class, 'destroy'])->name('subcategories.destroy');
 });

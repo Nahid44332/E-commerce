@@ -55,7 +55,12 @@
                                     <span class="text-xs text-slate-400">No Image</span>
                                 @endif
                             </td>
-                            <td><span class="font-bold">0</span></td>
+                            <td>
+                                <span
+                                    class="rounded-full bg-brand-50 px-2.5 py-1 text-xs font-bold text-brand-600 dark:bg-brand-950/40 dark:text-brand-400">
+                                    {{ $category->subCategories->count() }}
+                                </span>
+                            </td>
                             <td><span class="font-bold">0</span></td>
                             <td>
                                 @if ($category->status == 'active')
@@ -203,17 +208,18 @@
             document.getElementById('addModal').classList.remove('hidden');
         }
 
-      function openEditModal(category) {
-    document.getElementById('edit_cat_id').value = category.id;
-    document.getElementById('edit_name').value = category.name;
-    document.getElementById('edit_status').value = category.status;
+        function openEditModal(category) {
+            document.getElementById('edit_cat_id').value = category.id;
+            document.getElementById('edit_name').value = category.name;
+            document.getElementById('edit_status').value = category.status;
 
-    // ডায়নামিক্যালি রাউটে আইডি বসানোর কোড
-    let updateUrl = "{{ route('admin.categories.update', ':id') }}".replace(':id', category.id);
-    document.getElementById('editCategoryForm').action = updateUrl;
+            // ডায়নামিক্যালি রাউটে আইডি বসানোর কোড
+            let updateUrl = "{{ route('admin.categories.update', ':id') }}".replace(':id', category.id);
+            document.getElementById('editCategoryForm').action = updateUrl;
 
-    document.getElementById('editModal').classList.remove('hidden');
-}
+            document.getElementById('editModal').classList.remove('hidden');
+        }
+
         function closeModal(modalId) {
             document.getElementById(modalId).classList.add('hidden');
         }
