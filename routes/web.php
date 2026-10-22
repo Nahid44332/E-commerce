@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\BackendController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\FrontendController;
 use App\Models\SubCategory;
@@ -40,4 +41,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/sub-category/store', [SubCategoryController::class, 'store'])->name('subcategories.store');
     Route::put('/sub-category/update/{id}', [SubCategoryController::class, 'update'])->name('subcategories.update');
     Route::delete('/sub-category/{id}', [SubCategoryController::class, 'destroy'])->name('subcategories.destroy');
+});
+
+// ================= Product Routes =================
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/product/create', [ProductController::class, 'index'])->name('Product.index');
 });

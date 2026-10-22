@@ -7,10 +7,6 @@
 
 <body>
 
-   <!-- Magic Interactive Cursor Elements -->
-<div class="magic-cursor-dot" id="cursorDot"></div>
-<div class="magic-cursor-ring" id="cursorRing"></div>
-
 
    @include('Frontend.include.header')
 

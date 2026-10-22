@@ -10,10 +10,6 @@
 
 <body class="bg-slate-100 text-slate-800 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-200">
    
-   <!-- Magic Interactive Cursor Elements -->
-<div class="magic-cursor-dot" id="cursorDot"></div>
-<div class="magic-cursor-ring" id="cursorRing"></div>
-
     <!-- ===== Sidebar ===== -->
    @include('backend.include.sidebar')
 

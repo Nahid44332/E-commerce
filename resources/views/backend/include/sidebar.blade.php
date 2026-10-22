@@ -54,7 +54,7 @@
                             <a href="products.html"
                                 class="flex items-center gap-2 rounded-lg py-2 pl-11 pr-3 text-sm text-brand-200 hover:bg-white/5 hover:text-white"><span
                                     class="h-1.5 w-1.5 rounded-full bg-brand-400"></span>All Products</a>
-                            <a href="product-create.html"
+                            <a href="{{url('/admin/product/create')}}"
                                 class="flex items-center gap-2 rounded-lg py-2 pl-11 pr-3 text-sm text-brand-200 hover:bg-white/5 hover:text-white"><span
                                     class="h-1.5 w-1.5 rounded-full bg-brand-400"></span>Add Product</a>
                             <a href="inventory.html"
