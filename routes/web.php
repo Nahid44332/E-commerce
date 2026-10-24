@@ -45,5 +45,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 // ================= Product Routes =================
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/product/create', [ProductController::class, 'index'])->name('Product.index');
+    Route::get('/product/create', [ProductController::class, 'index'])->name('Product.create');
+    Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
+    Route::get('/products/list', [ProductController::class, 'productList'])->name('products.index');
+    Route::get('/products/modal-edit/{id}', [ProductController::class, 'modalEdit'])->name('products.modal-edit');
+    Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('/products/update/{id}', [ProductController::class, 'update'])->name('products.update');
+    Route::delete('/products/delete/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 });

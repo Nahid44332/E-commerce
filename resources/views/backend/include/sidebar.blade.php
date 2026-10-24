@@ -51,7 +51,7 @@
                             <i class="fa-solid fa-chevron-down sb-text text-[10px] transition"></i>
                         </button>
                         <div class="sb-kids mt-1 space-y-0.5 hidden">
-                            <a href="products.html"
+                            <a href="{{url('/admin/products/list')}}"
                                 class="flex items-center gap-2 rounded-lg py-2 pl-11 pr-3 text-sm text-brand-200 hover:bg-white/5 hover:text-white"><span
                                     class="h-1.5 w-1.5 rounded-full bg-brand-400"></span>All Products</a>
                             <a href="{{url('/admin/product/create')}}"
